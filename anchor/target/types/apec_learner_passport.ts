@@ -1,0 +1,640 @@
+/**
+ * Program IDL in camelCase format in order to be used in JS/TS.
+ *
+ * Note that this is only a type helper and is not the actual IDL. The original
+ * IDL can be found at `target/idl/apec_learner_passport.json`.
+ */
+export type ApecLearnerPassport = {
+  "address": "CTY5CyBk3JkGkqRLsAyqFp4V1RDdSabWTsT5uC1PANzw",
+  "metadata": {
+    "name": "apecLearnerPassport",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "addVerifiedIssuer",
+      "docs": [
+        "Add a verified issuer to the registry (only authority can call)"
+      ],
+      "discriminator": [
+        108,
+        136,
+        243,
+        198,
+        159,
+        195,
+        60,
+        192
+      ],
+      "accounts": [
+        {
+          "name": "issuerRegistry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  115,
+                  115,
+                  117,
+                  101,
+                  114,
+                  45,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "issuerRegistry"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "issuer",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "initializeIssuerRegistry",
+      "docs": [
+        "Initialize the issuer registry with the authority"
+      ],
+      "discriminator": [
+        157,
+        206,
+        75,
+        32,
+        236,
+        128,
+        138,
+        167
+      ],
+      "accounts": [
+        {
+          "name": "issuerRegistry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  115,
+                  115,
+                  117,
+                  101,
+                  114,
+                  45,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "mintCredential",
+      "docs": [
+        "Mint a credential NFT to a student's wallet"
+      ],
+      "discriminator": [
+        136,
+        108,
+        131,
+        240,
+        163,
+        102,
+        204,
+        13
+      ],
+      "accounts": [
+        {
+          "name": "credentialMint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  100,
+                  101,
+                  110,
+                  116,
+                  105,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "issuer"
+              },
+              {
+                "kind": "account",
+                "path": "student"
+              }
+            ]
+          }
+        },
+        {
+          "name": "issuerRegistry",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  115,
+                  115,
+                  117,
+                  101,
+                  114,
+                  45,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "credentialMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tokenAccount",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "student"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "student"
+        },
+        {
+          "name": "issuer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associatedTokenProgram",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "credentialType",
+          "type": "u8"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "removeVerifiedIssuer",
+      "docs": [
+        "Remove a verified issuer from the registry (only authority can call)"
+      ],
+      "discriminator": [
+        112,
+        60,
+        221,
+        110,
+        96,
+        235,
+        111,
+        129
+      ],
+      "accounts": [
+        {
+          "name": "issuerRegistry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  115,
+                  115,
+                  117,
+                  101,
+                  114,
+                  45,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "issuerRegistry"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "issuer",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "revokeCredential",
+      "docs": [
+        "Revoke a credential (burn the NFT)"
+      ],
+      "discriminator": [
+        38,
+        123,
+        95,
+        95,
+        223,
+        158,
+        169,
+        87
+      ],
+      "accounts": [
+        {
+          "name": "credentialMint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  100,
+                  101,
+                  110,
+                  116,
+                  105,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "issuer"
+              },
+              {
+                "kind": "account",
+                "path": "student"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "credentialMint"
+          ]
+        },
+        {
+          "name": "tokenAccount",
+          "writable": true
+        },
+        {
+          "name": "issuer",
+          "signer": true,
+          "relations": [
+            "credentialMint"
+          ]
+        },
+        {
+          "name": "student",
+          "relations": [
+            "credentialMint"
+          ]
+        },
+        {
+          "name": "tokenProgram",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "credentialMint",
+      "discriminator": [
+        238,
+        26,
+        57,
+        27,
+        254,
+        89,
+        58,
+        152
+      ]
+    },
+    {
+      "name": "issuerRegistry",
+      "discriminator": [
+        252,
+        217,
+        20,
+        87,
+        39,
+        96,
+        228,
+        46
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "issuerAlreadyExists",
+      "msg": "Issuer already exists in the registry"
+    },
+    {
+      "code": 6001,
+      "name": "unauthorizedIssuer",
+      "msg": "Unauthorized issuer - not in verified registry"
+    },
+    {
+      "code": 6002,
+      "name": "credentialRevoked",
+      "msg": "Credential has been revoked"
+    },
+    {
+      "code": 6003,
+      "name": "invalidCredentialType",
+      "msg": "Invalid credential type"
+    },
+    {
+      "code": 6004,
+      "name": "issuerRegistryFull",
+      "msg": "Issuer registry is full (max 10 issuers)"
+    },
+    {
+      "code": 6005,
+      "name": "nameTooLong",
+      "msg": "Name too long (max 32 characters)"
+    },
+    {
+      "code": 6006,
+      "name": "symbolTooLong",
+      "msg": "Symbol too long (max 10 characters)"
+    },
+    {
+      "code": 6007,
+      "name": "uriTooLong",
+      "msg": "URI too long (max 64 characters)"
+    }
+  ],
+  "types": [
+    {
+      "name": "credentialMint",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "credentialType",
+            "type": "u8"
+          },
+          {
+            "name": "issuedAt",
+            "type": "i64"
+          },
+          {
+            "name": "issuer",
+            "type": "pubkey"
+          },
+          {
+            "name": "isRevoked",
+            "type": "bool"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "issuerRegistry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "verifiedIssuers",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+};
