@@ -436,16 +436,6 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 - APEC Secretariat for cross-border education initiatives
 - All open-source contributors
 
-## 📞 Contact & Support
-
-- **GitHub Issues:** [Report bugs](https://github.com/yourusername/apec-learner-passport/issues)
-- **Email:** support@apeclearnerpassport.com
-- **Twitter:** [@APECLearner](https://twitter.com/APECLearner)
-
-## 🎯 Built For
-
-This project was built for [Hackathon Name] to address critical challenges in APEC cross-border education mobility and credential verification.
-
 ---
 
 **Made with ❤️ for 25 million APEC students**
